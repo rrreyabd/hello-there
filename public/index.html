@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hello There Website">
+    <title>Answer This</title>
+    <link rel="stylesheet" href="../dist/output.css">
+</head>
+<body class="bg-main flex flex-col items-center">
+    <header class="bg-white h-[10vh] w-full">
+        <nav class="flex h-full w-full items-center justify-center">
+            <p class="font-header font-bold text-4xl text-main">Hello there!</p>
+        </nav>
+    </header>
+    <section class="bg-main w-screen sm:w-[40rem] h-fit pb-8">
+
+        <main class="font-main">
+            <div class="flex justify-center h-[20vh] items-center">
+                <h1 class="text-white font-semibold text-center text-3xl w-1/2">What is Your Question?</h1>
+            </div>
+
+            <form action="" class="px-4 sm:px-8 flex flex-col gap-8">
+                <!-- QUESTION -->
+                <div class="flex flex-col gap-2">
+                    <p class="font-semibold text-xl text-white flex justify-between items-center">
+                        Question
+                        <span class="italic font-thin text-gray-300 text-sm">min 10 characters</span>
+                    </p>
+                    <textarea 
+                        name="question" 
+                        id="question" 
+                        placeholder="I like you, would you like to be my-" 
+                        minlength="10"
+                        maxlength="100"
+                        aria-label="Question"
+                        oninput="countCharacters('question', 'questionCount')"
+                        class="w-full h-32 resize-none rounded-md bg-secondary px-4 py-2 text-white text-lg"
+                        ></textarea>
+                    <p class="text-end text-gray-300" id="questionCount">0/100</p>
+                </div>
+                <!-- QUESTION ENDS -->
+
+                <!-- ANSWER -->
+                <div class="flex flex-col gap-2">
+                    <p class="font-semibold text-xl text-white flex justify-between items-center">
+                        Answer
+                        <span class="italic font-thin text-gray-300 text-sm">2-10 characters</span>
+                    </p>
+                    
+                    <div class="flex justify-between">
+                        <input 
+                            type="text" 
+                            name="yes" 
+                            id="yes"
+                            value="Yes"
+                            minlength="2"
+                            maxlength="10"
+                            aria-label="Yes"
+                            class="w-[49%] h-12 bg-secondary flex items-center px-4 py-2 text-xl text-white rounded-md"
+                            oninput="updateText('yes', 'valueYes')"
+                            >
+                        <input 
+                            type="text" 
+                            name="no" 
+                            id="no"
+                            value="No"
+                            minlength="2"
+                            maxlength="10"
+                            aria-label="No"
+                            class="w-[49%] h-12 bg-secondary flex items-center px-4 py-2 text-xl text-white rounded-md"
+                            oninput="updateText('no', 'valueNo')"
+                            >
+                    </div>
+
+                    <div class="flex justify-between">
+                        <div class="w-[49%] h-24 bg-secondary brightness-150 flex justify-center rounded-md items-center px-4 py-2 text-xl text-white aspect-auto">
+                            <p id="valueYes">Yes</p>
+                        </div>
+
+                        <div class="w-[49%] h-24 bg-secondary brightness-150 flex justify-center rounded-md items-center px-4 py-2 text-xl text-white aspect-auto">
+                            <p id="valueNo">No</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- ANSWER ENDS -->
+
+                <!-- RESULT -->
+                <div class="flex flex-col gap-2">
+                    <p class="font-semibold text-xl text-white flex justify-between items-center">
+                        Result
+                        <span class="italic font-thin text-gray-300 text-sm">min 2 characters</span>
+                    </p>
+
+                    <input 
+                        type="text" 
+                        name="result" 
+                        id="result"
+                        minlength="2"
+                        maxlength="10"
+                        value="Yeayyyy!"
+                        placeholder="Yeayyyy!"
+                        aria-label="Result Head"
+                        class="h-12 bg-secondary flex items-center px-4 py-2 text-xl text-white rounded-md"
+                        oninput="countCharacters('result', 'resultCount')"
+                        >
+
+                    <p class="text-end text-gray-300" id="resultCount">8/10</p>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <input 
+                        type="text" 
+                        name="result" 
+                        id="resultBody"
+                        minlength="2"
+                        maxlength="100"
+                        aria-label="Result Body"
+                        value="Well, give me your number then"
+                        placeholder="Well, give me your number then"
+                        class="h-12 w-full bg-secondary px-4 py-2 text-xl text-white rounded-md resize-none text-start break-all"
+                        oninput="countCharacters('resultBody', 'resultBodyCount')">
+                    <p class="text-end text-gray-300" id="resultBodyCount">30/100</p>
+                </div>
+                <!-- RESULT ENDS -->
+
+                <!-- PREVIEW -->
+                <div class="min-h-[10rem] bg-secondary brightness-150 w-full rounded-md text-white p-4 flex flex-col gap-4">
+                    <div class="flex justify-between font-medium text-lg">
+                        <p id="resultHead">Hooray</p>
+                        &#x2715;    
+                    </div>
+                    <hr>
+                    <p class="font-light text-lg break-all">Well, give me your number then</p>
+                </div>
+                <!-- PREVIEW ENDS -->
+
+                <button type="submit" class="font-semibold text-white text-lg bg-secondary py-3 rounded-md hover:brightness-125 transition duration-100 ease-in-out">Generate Link</button>
+                
+                <!-- GENERATED LINK -->
+                <div class="text-white min-h-[10rem] bg-secondary p-4 break-all rounded-md">
+                    <!-- BEFORE -->
+                    <p class="text-gray-300">The link will be displayed here once you click the 'Generate Link' button.</p>
+                    
+                    <!-- AFTER -->
+                    <!-- <p class="text-white">https://</p> -->
+                </div>
+                <!-- GENERATED LINK ENDS -->
+
+                <!-- COPY BUTTON -->
+                <button class="w-full bg-secondary py-3 hover:brightness-150 text-white text-lg font-semibold transition duration-100 ease-in-out rounded-md">Copy Link</button>
+                <!-- COPY BUTTON ENDS -->
+            </form>
+
+        </main>
+    </section>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
