@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hello There Website">
+    <title>Hello there!</title>
+    <link rel="stylesheet" href="dist/output.css">
+</head>
+<body class="bg-main flex flex-col items-center">
+
+    <!-- POPUP -->
+    <div class="fixed z-10 top-0 left-0 w-screen h-screen backdrop-brightness-75 flex justify-center items-center hidden" id="popup">
+        <div class="w-full mx-4 sm:mx-0 sm:w-[30rem] bg-secondary brightness-150 aspect-video rounded-md text-white p-4 flex flex-col gap-4">
+            <div class="flex justify-between font-medium text-lg">
+                <p id="resultHead">Hooray</p>
+                <button onclick="resultToggle()"> &#x2715; </button>
+            </div>
+            <hr>
+            <p id="bodyResult" class="font-light text-lg break-all">Well, give me your number then</p>
+        </div>
+    </div>
+
+    <header class="bg-white h-[10vh] w-full">
+        <nav class="flex h-full w-full items-center justify-center">
+            <p class="font-header font-bold text-4xl text-main">Hello there!</p>
+        </nav>
+    </header>
+
+    <section class="w-screen sm:w-[40rem] h-fit pb-8 relative">
+
+        <main class="font-main px-4 sm:px-0 flex flex-col h-[80vh] justify-center">
+            <!-- QUESTION -->
+            <div class="min-h-[20rem] flex justify-center items-center text-center break-words py-8">
+                <p id="pertanyaan" class="text-white font-bold text-3xl">I like you, would you like to be my-</p>
+            </div>
+
+            <!-- OPTIONS -->
+            <div class="flex justify-between">
+                <button 
+                    id="benar"
+                    class="w-[46%] bg-secondary hover:brightness-150 transition duration-100 ease-in-out flex justify-center items-center aspect-video rounded-md text-white font-bold text-xl h-[6rem]"
+                    onclick="resultToggle()">
+                    Yes
+                </button>
+                <button
+                    class="w-[46%] h-[6rem] bg-secondary hover:brightness-150 transition duration-100 ease-in-out flex justify-center items-center aspect-video rounded-md text-white font-bold text-xl absolute right-4"
+                    id="falseAnswer"
+                    onclick="changePosition('falseAnswer')">
+                    No
+                </button>
+            </div>
+        </main>
+    </section>
+
+    <script src="public/js/main.js"></script>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const pertanyaan = urlParams.get('p');
+        const benar = urlParams.get('b');
+        const salah = urlParams.get('s');
+        const header = urlParams.get('h');
+        const body = urlParams.get('r');
+
+        document.getElementById("pertanyaan").innerHTML = pertanyaan;
+        document.getElementById("benar").innerHTML = benar;
+        document.getElementById("falseAnswer").innerHTML = salah;
+        document.getElementById("resultHead").innerHTML = header;
+        document.getElementById("bodyResult").innerHTML = body;
+    </script>
+</body>
+</html>
