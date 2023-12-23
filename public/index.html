@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" scroll="smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hello There Website">
-    <title>Answer This</title>
+    <title>Hello there!</title>
+    <style>
+        html {
+        scroll-behavior: smooth;
+        }
+    </style>
     <link rel="stylesheet" href="../dist/output.css">
 </head>
 <body class="bg-main flex flex-col items-center">
@@ -20,10 +25,10 @@
                 <h1 class="text-white font-semibold text-center text-3xl w-1/2">What is Your Question?</h1>
             </div>
 
-            <form action="" class="px-4 sm:px-8 flex flex-col gap-8">
+            <div class="px-4 sm:px-8 flex flex-col gap-8">
                 <!-- QUESTION -->
                 <div class="flex flex-col gap-2">
-                    <p class="font-semibold text-xl text-white flex justify-between items-center">
+                    <p tabindex="0" id="questionHeader" class="font-semibold text-xl text-white flex justify-between items-center">
                         Question
                         <span class="italic font-thin text-gray-300 text-sm">min 10 characters</span>
                     </p>
@@ -37,13 +42,16 @@
                         oninput="countCharacters('question', 'questionCount')"
                         class="w-full h-32 resize-none rounded-md bg-secondary px-4 py-2 text-white text-lg"
                         ></textarea>
-                    <p class="text-end text-gray-300" id="questionCount">0/100</p>
+                    <div class="flex justify-between">
+                        <p class="text-red-500" id="errorQuestion"></p>
+                        <p class="text-end text-gray-300" id="questionCount">0/100</p>
+                    </div>
                 </div>
                 <!-- QUESTION ENDS -->
 
                 <!-- ANSWER -->
                 <div class="flex flex-col gap-2">
-                    <p class="font-semibold text-xl text-white flex justify-between items-center">
+                    <p tabindex="0" id="answerHeader" class="font-semibold text-xl text-white flex justify-between items-center">
                         Answer
                         <span class="italic font-thin text-gray-300 text-sm">2-10 characters</span>
                     </p>
@@ -87,7 +95,7 @@
 
                 <!-- RESULT -->
                 <div class="flex flex-col gap-2">
-                    <p class="font-semibold text-xl text-white flex justify-between items-center">
+                    <p tabindex="0" id="resultHeader" class="font-semibold text-xl text-white flex justify-between items-center">
                         Result
                         <span class="italic font-thin text-gray-300 text-sm">min 2 characters</span>
                     </p>
@@ -102,10 +110,13 @@
                         placeholder="Yeayyyy!"
                         aria-label="Result Head"
                         class="h-12 bg-secondary flex items-center px-4 py-2 text-xl text-white rounded-md"
-                        oninput="countCharacters('result', 'resultCount')"
+                        oninput="countCharacters('result', 'resultCount') + updateText('result', 'resultHead')"
                         >
 
-                    <p class="text-end text-gray-300" id="resultCount">8/10</p>
+                    <div class="flex justify-between">
+                        <p class="text-red-500" id="errorResult"></p>
+                        <p class="text-end text-gray-300" id="resultCount">8/10</p>
+                    </div>
                 </div>
 
                 <div class="flex flex-col gap-2">
@@ -119,42 +130,154 @@
                         value="Well, give me your number then"
                         placeholder="Well, give me your number then"
                         class="h-12 w-full bg-secondary px-4 py-2 text-xl text-white rounded-md resize-none text-start break-all"
-                        oninput="countCharacters('resultBody', 'resultBodyCount')">
-                    <p class="text-end text-gray-300" id="resultBodyCount">30/100</p>
+                        oninput="countCharacters('resultBody', 'resultBodyCount') + updateText('resultBody', 'resultBodyText')">
+                    <div class="flex justify-between">
+                        <p class="text-red-500" id="errorResultBody"></p>
+                        <p class="text-end text-gray-300" id="resultBodyCount">30/100</p>
+                    </div>
                 </div>
                 <!-- RESULT ENDS -->
 
                 <!-- PREVIEW -->
                 <div class="min-h-[10rem] bg-secondary brightness-150 w-full rounded-md text-white p-4 flex flex-col gap-4">
                     <div class="flex justify-between font-medium text-lg">
-                        <p id="resultHead">Hooray</p>
+                        <p id="resultHead">Yeayyyy!</p>
                         &#x2715;    
                     </div>
                     <hr>
-                    <p class="font-light text-lg break-all">Well, give me your number then</p>
+                    <p class="font-light text-lg break-all" id="resultBodyText">Well, give me your number then</p>
                 </div>
                 <!-- PREVIEW ENDS -->
 
-                <button type="submit" class="font-semibold text-white text-lg bg-secondary py-3 rounded-md hover:brightness-125 transition duration-100 ease-in-out">Generate Link</button>
+                <button onclick="genereteLink()" type="button" class="font-semibold text-white text-lg bg-secondary py-3 rounded-md hover:brightness-125 transition duration-100 ease-in-out">Generate Link</button>
                 
                 <!-- GENERATED LINK -->
                 <div class="text-white min-h-[10rem] bg-secondary p-4 break-all rounded-md">
                     <!-- BEFORE -->
-                    <p class="text-gray-300">The link will be displayed here once you click the 'Generate Link' button.</p>
+                    <p id="link" class="text-gray-300">The link will be displayed here once you click the 'Generate Link' button.</p>
                     
                     <!-- AFTER -->
                     <!-- <p class="text-white">https://</p> -->
                 </div>
                 <!-- GENERATED LINK ENDS -->
 
+                <div class="text-center text-white text-lg" id="copyMessage"></div>
+                
                 <!-- COPY BUTTON -->
-                <button class="w-full bg-secondary py-3 hover:brightness-150 text-white text-lg font-semibold transition duration-100 ease-in-out rounded-md">Copy Link</button>
+                <button type="button" onclick="copyText()" class="w-full bg-secondary py-3 hover:brightness-150 text-white text-lg font-semibold transition duration-100 ease-in-out rounded-md">Copy Link</button>
                 <!-- COPY BUTTON ENDS -->
-            </form>
+
+            </div>
 
         </main>
     </section>
 
     <script src="./js/main.js"></script>
+
+    <!-- generate link -->
+    <script>
+        function genereteURI(text){
+            const encodedText = encodeURI(text).replace(/[!'()*]/g, (c) => '%' + c.charCodeAt(0).toString(16).toUpperCase());
+
+            return encodedText;
+        }
+
+        function genereteLink(){
+            const path = window.location.hostname;
+
+            var pertanyaan = document.getElementById("question").value;
+            var benar = document.getElementById("yes").value;
+            var salah = document.getElementById("no").value;
+            var header = document.getElementById("result").value;
+            var resultBody = document.getElementById("resultBody").value;
+        
+
+            // validasi
+            // validasi question
+            if (pertanyaan.length < 10){
+                document.getElementById("question").classList.add("border-2");
+                document.getElementById("question").classList.add("border-red-500");
+                document.getElementById("errorQuestion").innerHTML = "min 10 characters";
+                document.getElementById("questionHeader").focus();
+            }else{
+                document.getElementById("question").classList.remove("border-2");
+                document.getElementById("question").classList.remove("border-red-500");
+                document.getElementById("errorQuestion").innerHTML = "";
+            }
+            // akhir validasi question
+
+            // validasi yes
+            if (benar.length < 2){
+                document.getElementById("yes").classList.add("border-2");
+                document.getElementById("yes").classList.add("border-red-500");
+                document.getElementById("answerHeader").focus();
+            }else{
+                document.getElementById("yes").classList.remove("border-2");
+                document.getElementById("yes").classList.remove("border-red-500");
+            }
+            // akhir validasi yes
+
+            // validasi no
+            if (salah.length < 2){
+                document.getElementById("no").classList.add("border-2");
+                document.getElementById("no").classList.add("border-red-500");
+                document.getElementById("answerHeader").focus();
+            }else{
+                document.getElementById("no").classList.remove("border-2");
+                document.getElementById("no").classList.remove("border-red-500");
+            }
+            // akhir validasi no
+
+            // validasi result
+            if (header.length < 2){
+                document.getElementById("result").classList.add("border-2");
+                document.getElementById("result").classList.add("border-red-500");
+                document.getElementById("errorResult").innerHTML = "min 2 characters";
+                document.getElementById("resultHeader").focus();
+            }else{
+                document.getElementById("result").classList.remove("border-2");
+                document.getElementById("result").classList.remove("border-red-500");
+                document.getElementById("errorResult").innerHTML = "";
+            }
+            // akhir validasi result
+
+            // validasi result body
+            if (resultBody.length < 2){
+                document.getElementById("resultBody").classList.add("border-2");
+                document.getElementById("resultBody").classList.add("border-red-500");
+                document.getElementById("errorResultBody").innerHTML = "min 2 characters";
+                document.getElementById("resultHeader").focus();
+            }else{
+                document.getElementById("resultBody").classList.remove("border-2");
+                document.getElementById("resultBody").classList.remove("border-red-500");
+                document.getElementById("errorResultBody").innerHTML = "";
+            }
+            // akhir validasi result body
+            // akhir validasi
+    
+            if (pertanyaan.length >= 10 && benar.length >= 2 && salah.length >= 2 && header.length >= 2 && resultBody.length >= 2){
+                document.getElementById("link").innerHTML = path + "/answer.html?p=" + genereteURI(pertanyaan) + "&b=" + genereteURI(benar) + "&s=" + genereteURI(salah) + "&h=" + genereteURI(header) + "&r=" + genereteURI(resultBody);
+            }
+        }
+
+        // copy link
+        function copyText() {
+            const inputElement = document.getElementById("link");
+
+            const range = document.createRange();
+            range.selectNode(inputElement);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            
+            document.execCommand('copy');
+        
+            window.getSelection().removeAllRanges();
+        
+            document.getElementById("copyMessage").innerHTML = "Link copied to clipboard!";
+        }
+        // akhir copy link
+    </script>
+    <!-- akhir generate link -->
+
 </body>
 </html>
