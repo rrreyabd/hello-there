@@ -45,6 +45,22 @@
                         <p class="text-blue" id="errorQuestion"></p>
                         <p class="text-end text-gray-300" id="questionCount">0/100</p>
                     </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label for="image" class="w-full h-8 bg-input border border-border flex justify-center items-center py-6 rounded-md cursor-pointer hover:brightness-110 ease-in-out transition duration-200">
+                          <input 
+                            type="file" 
+                            name="image" 
+                            id="image" 
+                            class="hidden" 
+                            onchange="displayFileName()" 
+                            accept=".jpg, .jpeg, .png, .webp"
+                            >
+                          <p class="font-semibold text-white ">Add Image (Optional)</p>
+                        </label>
+
+                        <p id="fileName" class="text-blue break-all"></p>
+                    </div>
                 </div>
                 <!-- QUESTION ENDS -->
 
@@ -132,22 +148,6 @@
                             <p class="text-end text-gray-300" id="resultBodyCount">30/100</p>
                         </div>
                     </div>
-
-                    <div class="flex flex-col gap-2">
-                        <label for="image" class="w-full h-8 bg-input border border-border flex justify-center items-center py-6 rounded-md cursor-pointer">
-                          <input 
-                            type="file" 
-                            name="image" 
-                            id="image" 
-                            class="hidden" 
-                            onchange="displayFileName()" 
-                            accept=".jpg, .jpeg, .png, .webp"
-                            >
-                          <p class="font-semibold text-white ">Add Image (Optional)</p>
-                        </label>
-
-                        <p id="fileName" class="text-blue break-all"></p>
-                    </div>
                 </div>
                 <!-- RESULT ENDS -->
 
@@ -163,7 +163,7 @@
                 <!-- PREVIEW ENDS -->
 
                 <div class="flex flex-col gap-4">
-                    <button onclick="genereteLink()" type="button" class="font-semibold text-white text-lg bg-blue py-3 rounded-md hover:shadow-[5px_10px_25px_rgba(8,_112,_184,_0.7)] transition duration-300 ease-in-out">Generate Link</button>
+                    <button onclick="genereteLink()" type="button" class="font-semibold text-white text-lg bg-blue py-3 rounded-md hover:shadow-[0_0px_40px_rgba(8,_112,_184,_0.7)] transition duration-300 ease-in-out">Generate Link</button>
                     
                     <!-- GENERATED LINK -->
                     <div class="text-white min-h-[10rem] bg-input p-4 break-all rounded-md border border-border">
@@ -212,13 +212,13 @@
             if (pertanyaan.length < 10){
                 document.getElementById("question").classList.add("border-2");
                 document.getElementById("question").classList.add("border-blue");
-                document.getElementById("questionContainer").classList.add("shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]");
+                document.getElementById("questionContainer").classList.add("shadow-[0_20px_80px_rgba(8,_112,_184,_0.7)]");
                 document.getElementById("errorQuestion").innerHTML = "min 10 characters";
                 document.getElementById("questionHeader").focus();
             }else{
                 document.getElementById("question").classList.remove("border-2");
                 document.getElementById("question").classList.remove("border-blue");
-                document.getElementById("questionContainer").classList.remove("shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]");
+                document.getElementById("questionContainer").classList.remove("shadow-[0_20px_80px_rgba(8,_112,_184,_0.7)]");
                 document.getElementById("errorQuestion").innerHTML = "";
             }
             // akhir validasi question
@@ -227,12 +227,12 @@
             if (benar.length < 2){
                 document.getElementById("yes").classList.add("border-2");
                 document.getElementById("yes").classList.add("border-blue");
-                document.getElementById("answerContainer").classList.add("shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]");
+                document.getElementById("answerContainer").classList.add("shadow-[0_20px_80px_rgba(8,_112,_184,_0.7)]");
                 document.getElementById("answerHeader").focus();
             }else{
                 document.getElementById("yes").classList.remove("border-2");
                 document.getElementById("yes").classList.remove("border-blue");
-                document.getElementById("answerContainer").classList.remove("shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]");
+                document.getElementById("answerContainer").classList.remove("shadow-[0_20px_80px_rgba(8,_112,_184,_0.7)]");
             }
             // akhir validasi yes
 
@@ -240,12 +240,12 @@
             if (salah.length < 2){
                 document.getElementById("no").classList.add("border-2");
                 document.getElementById("no").classList.add("border-blue");
-                document.getElementById("answerContainer").classList.add("shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]");
+                document.getElementById("answerContainer").classList.add("shadow-[0_20px_80px_rgba(8,_112,_184,_0.7)]");
                 document.getElementById("answerHeader").focus();
             }else{
                 document.getElementById("no").classList.remove("border-2");
                 document.getElementById("no").classList.remove("border-blue");
-                document.getElementById("answerContainer").classList.remove("shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]");
+                document.getElementById("answerContainer").classList.remove("shadow-[0_20px_80px_rgba(8,_112,_184,_0.7)]");
             }
             // akhir validasi no
 
@@ -254,7 +254,7 @@
                 document.getElementById("result").classList.add("border-2");
                 document.getElementById("result").classList.add("border-blue");
                 document.getElementById("errorResult").innerHTML = "min 2 characters";
-                document.getElementById("resultContainer").classList.add("shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]");
+                document.getElementById("resultContainer").classList.add("shadow-[0_20px_80px_rgba(8,_112,_184,_0.7)]");
                 document.getElementById("resultHeader").focus();
             }else{
                 document.getElementById("result").classList.remove("border-2");
@@ -268,7 +268,7 @@
                 document.getElementById("resultBody").classList.add("border-2");
                 document.getElementById("resultBody").classList.add("border-blue");
                 document.getElementById("errorResultBody").innerHTML = "min 2 characters";
-                document.getElementById("resultContainer").classList.add("shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]");
+                document.getElementById("resultContainer").classList.add("shadow-[0_20px_80px_rgba(8,_112,_184,_0.7)]");
                 document.getElementById("resultHeader").focus();
             }else{
                 document.getElementById("resultBody").classList.remove("border-2");
