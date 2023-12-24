@@ -878,6 +878,10 @@ video {
   height: 100vh;
 }
 
+.h-8{
+  height: 2rem;
+}
+
 .min-h-\[10rem\]{
   min-height: 10rem;
 }
@@ -980,6 +984,10 @@ video {
 
 .transform-none{
   transform: none;
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }
 
 .touch-auto{
@@ -1916,6 +1924,11 @@ video {
   background-color: rgb(15 15 17 / var(--tw-bg-opacity));
 }
 
+.bg-red-200{
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-30{
   --tw-bg-opacity: 0.3;
 }
@@ -2052,6 +2065,16 @@ video {
 .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-4{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pb-8{

@@ -36,3 +36,10 @@ const changePosition = (targetId) => {
 
     currentPositionIndex = (currentPositionIndex + 1) % positions.length;
 };
+
+const displayFileName = () => {
+    const input = document.getElementById('image');
+    const fileName = input.files[0].name;
+
+    document.getElementById('fileName').innerHTML = 'Selected file: ' + fileName;
+  }
