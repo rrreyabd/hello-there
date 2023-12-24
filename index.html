@@ -10,7 +10,7 @@
         scroll-behavior: smooth;
         }
     </style>
-    <link rel="stylesheet" href="../dist/output.css">
+    <link rel="stylesheet" href="dist/output.css">
 </head>
 <body class="bg-main flex flex-col items-center">
     <header class="bg-white h-[10vh] w-full">
@@ -170,7 +170,7 @@
         </main>
     </section>
 
-    <script src="./js/main.js"></script>
+    <script src="public/js/main.js"></script>
 
     <!-- generate link -->
     <script>
@@ -181,7 +181,7 @@
         }
 
         function genereteLink(){
-            const path = window.location.hostname;
+            const path = window.location.href;
 
             var pertanyaan = document.getElementById("question").value;
             var benar = document.getElementById("yes").value;
@@ -254,7 +254,7 @@
             // akhir validasi
     
             if (pertanyaan.length >= 10 && benar.length >= 2 && salah.length >= 2 && header.length >= 2 && resultBody.length >= 2){
-                document.getElementById("link").innerHTML = path + "/answer.html?p=" + genereteURI(pertanyaan) + "&b=" + genereteURI(benar) + "&s=" + genereteURI(salah) + "&h=" + genereteURI(header) + "&r=" + genereteURI(resultBody);
+                document.getElementById("link").innerHTML = path + "answer.html?p=" + genereteURI(pertanyaan) + "&b=" + genereteURI(benar) + "&s=" + genereteURI(salah) + "&h=" + genereteURI(header) + "&r=" + genereteURI(resultBody);
             }
         }
 
