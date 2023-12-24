@@ -29,13 +29,10 @@ let currentPositionIndex = 0;
 const changePosition = (targetId) => {
     const button = document.getElementById(targetId);
     
-    // Ambil posisi dari array positions
     const position = positions[currentPositionIndex];
 
-    // Setel posisi tombol
     button.style.left = position.left;
     button.style.top = position.top;
 
-    // Ganti ke posisi berikutnya
     currentPositionIndex = (currentPositionIndex + 1) % positions.length;
 };
