@@ -59,7 +59,7 @@
 						<div class="flex flex-col gap-2">
 							<label
 								for="image"
-								class="w-full h-8 bg-input border border-border flex justify-center items-center py-6 rounded-md cursor-pointer hover:brightness-110 ease-in-out transition duration-200"
+								class="w-full min-h-[3.3rem] bg-input border border-border flex justify-center items-center rounded-md cursor-pointer hover:brightness-110 ease-in-out transition duration-200"
 							>
 								<input
 									type="file"
@@ -69,7 +69,9 @@
 									onchange="displayFileName()"
 									accept=".jpg, .jpeg, .png, .webp"
 								/>
-								<p class="font-semibold text-white">Add Image (Optional)</p>
+                                <span class="absolute font-semibold text-white">Add Image (Optional)</span>
+								<img class="relative rounded-md" id="previewImage"></img>
+								
 							</label>
 
 							<div class="flex justify-between w-full">
@@ -260,6 +262,8 @@
 
 		<!-- generate link -->
 		<script>
+            console.log(localStorage);
+
 			function genereteURI(text) {
 				const encodedText = encodeURI(text).replace(
 					/[!'()*]/g,
@@ -379,6 +383,12 @@
 				// akhir validasi result body
 				// akhir validasi
 
+                // simpan gambar dalam storage
+
+                // akhir simpan gambar dalam storage
+
+                saveImageToLocalStorage('alwin.jpg', 'gambar', 'abc.jpeg');
+
 				if (
 					pertanyaan.length >= 10 &&
 					benar.length >= 2 &&
@@ -386,8 +396,8 @@
 					header.length >= 2 &&
 					resultBody.length >= 2
 				) {
-					document.getElementById("link").innerHTML =
-						path +
+					// Ganti dengan URL yang ingin Anda pendekkan
+					const originalUrl = path +
 						"answer.html?p=" +
 						genereteURI(pertanyaan) +
 						"&b=" +
@@ -398,6 +408,39 @@
 						genereteURI(header) +
 						"&r=" +
 						genereteURI(resultBody);
+
+					// Ganti dengan kunci API TinyURL Anda
+					const apiKey = "63k7yGTDys5xCIEw5h0pXyCAN3yRjdzHI2wU5u9De8AK62yy3OCaHxhzctxY";
+
+					// Endpoint API TinyURL
+					const apiUrl = "https://tinyurl.com/openapi/v2.json";
+
+					// Data yang akan dikirimkan dalam permintaan POST
+					const requestData = {
+						url: originalUrl,
+						domain: "tinyurl.com",
+						alias: "hello-there",
+						expires_at: "2024-10-25 10:11:12",
+						description: "string"
+					};
+
+					// Membuat permintaan POST menggunakan fetch
+					fetch(apiUrl, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							"api_token": apiKey
+						},
+						body: JSON.stringify(requestData)
+					})
+						.then(response => response.text())
+						.then(shortenedUrl => {
+							document.getElementById("link").innerHTML = shortenedUrl;
+						})
+						.catch(error => {
+							console.error("Error:", error);
+						}
+					);
 				}
 			}
 
@@ -420,5 +463,25 @@
 			// akhir copy link
 		</script>
 		<!-- akhir generate link -->
+
+		<!-- preview image -->
+		<script>
+			document.getElementById("image").addEventListener("change", function (e) {
+				var previewImage = document.getElementById("previewImage");
+				var fileInput = e.target;
+
+				if (fileInput.files && fileInput.files[0]) {
+					var reader = new FileReader();
+
+					reader.onload = function (e) {
+						previewImage.src = e.target.result;
+						previewImage.style.display = "block";
+					};
+
+					reader.readAsDataURL(fileInput.files[0]);
+				}
+			});
+		</script>
+		<!-- akhir preview image -->
 	</body>
 </html>
