@@ -11,13 +11,15 @@
 
     <!-- POPUP -->
     <div class="fixed z-10 top-0 left-0 w-screen h-screen backdrop-brightness-75 flex justify-center items-center hidden" id="popup">
-        <div class="w-full mx-4 sm:mx-0 sm:w-[30rem] bg-secondary brightness-150 aspect-video rounded-md text-white p-4 flex flex-col gap-4">
+        <div class="w-full mx-4 sm:mx-0 sm:w-[30rem] bg-input brightness-150 aspect-video rounded-md text-white p-4 flex flex-col gap-4">
             <div class="flex justify-between font-medium text-lg">
-                <p id="resultHead">Hooray</p>
+                <!-- <p id="resultHead">Hooray</p> -->
+                <p id="resultHead"></p>
                 <button onclick="resultToggle()"> &#x2715; </button>
             </div>
             <hr>
-            <p id="bodyResult" class="font-light text-lg break-all">Well, give me your number then</p>
+            <!-- <p id="bodyResult" class="font-light text-lg break-all">Well, give me your number then</p> -->
+            <p id="bodyResult" class="font-light text-lg break-all"></p>
         </div>
     </div>
 
@@ -32,7 +34,8 @@
         <main class="font-main px-4 sm:px-0 flex flex-col h-[80vh] justify-center">
             <!-- QUESTION -->
             <div class="min-h-[20rem] flex justify-center items-center text-center break-words py-8">
-                <p id="pertanyaan" class="text-white font-bold text-3xl">I like you, would you like to be my-</p>
+                <!-- <p id="pertanyaan" class="text-white font-bold text-3xl ">I like you, would you like to be my-</p> -->
+                <p id="pertanyaan" class="text-white font-bold text-3xl "></p>
             </div>
 
             <!-- OPTIONS -->
@@ -41,13 +44,13 @@
                     id="benar"
                     class="w-[46%] bg-input border border-border hover:brightness-150 transition duration-100 ease-in-out flex justify-center items-center aspect-video rounded-md text-white font-bold text-xl h-[6rem]"
                     onclick="resultToggle()">
-                    Yes
+                    <!-- Yes -->
                 </button>
                 <button
                     class="w-[46%] h-[6rem] bg-input border border-border hover:brightness-150 transition duration-100 ease-in-out flex justify-center items-center aspect-video rounded-md text-white font-bold text-xl absolute right-4"
                     id="falseAnswer"
                     onclick="changePosition('falseAnswer')">
-                    No
+                    <!-- No -->
                 </button>
             </div>
         </main>
