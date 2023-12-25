@@ -42,4 +42,4 @@ const displayFileName = () => {
     const fileName = input.files[0].name;
 
     document.getElementById('fileName').innerHTML = 'Selected file: ' + fileName;
-  }
+}
