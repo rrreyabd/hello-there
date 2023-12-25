@@ -1,2 +1,2 @@
-## Visit site on
+## Visit the site at
     https://rrreyabd.github.io/hello-there/
