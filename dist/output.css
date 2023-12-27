@@ -930,6 +930,10 @@ video {
   min-height: 20rem;
 }
 
+.min-h-\[3\.3rem\]{
+  min-height: 3.3rem;
+}
+
 .w-1\/2{
   width: 50%;
 }
